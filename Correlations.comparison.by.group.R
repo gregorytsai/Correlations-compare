@@ -1,32 +1,32 @@
 ##################################################################################
-###ÀË©w¨â²Õ¬ÛÃö®t²§
+###æª¢å®šå…©çµ„ç›¸é—œå·®ç•°
 ##Version 1.0
-##Known Issue: Use too much loop and temp variable, should use apply family in the future 
+##Known Issue: Use too much loop and temp variable 
 ##2015.12.11
 ##Author:GregTsai   Email:gregorytsai@gmail.com
 ##Developed on R Ver.3.2.2
 ##MBESS 3.3.3
 ##################################################################################
 
-##²Ä¤@¦¸°õ¦æ©Î¬O¤É¯ÅR¶·¦w¸Ë®M¥ó
+##ç¬¬ä¸€æ¬¡åŸ·è¡Œæˆ–æ˜¯å‡ç´šRé ˆå®‰è£å¥—ä»¶
 install.packages("Hmisc") 
 install.packages("psych") 
 install.packages("cocor") # for CI
-##¶}±ÒR¤§«á¶]²Ä¤@¦¸»İ¸ü¤J®M¥ó
+##é–‹å•ŸRä¹‹å¾Œè·‘ç¬¬ä¸€æ¬¡éœ€è¼‰å…¥å¥—ä»¶
 library("Hmisc")
 library("psych") 
 library("cocor") 
 
 
-####¨Ï¥ÎªÌ»İ«ü©w³¡¤À
-##Åª¨ú¸ê®Æ
-##¦Û°Ê¿ï¾Ü°õ¦æ¦¹¦æ
+####ä½¿ç”¨è€…éœ€æŒ‡å®šéƒ¨åˆ†
+##è®€å–è³‡æ–™
+##è‡ªå‹•é¸æ“‡åŸ·è¡Œæ­¤è¡Œ
 data=read.csv(file.choose(), header=T) 
-##¤â°Ê«ü©w°õ¦æ¦¹¦æ
-data=read.csv("C://Users/Greg/OneDrive/¡¹½×¤å¸ê®Æ/Raw data/BioPsychoSocial.csv", header=T) 
-data=read.csv("C://Users/Grego/OneDrive/¡¹½×¤å¸ê®Æ/Raw data/CorrelationTest.csv", header=T) 
-data=read.csv("E://OneDrive/¡¹½×¤å¸ê®Æ/Raw data/BioPsychoSocial.csv", header=T) 
-data1=read.csv("C://Users/Grego/OneDrive/¡¹½×¤å¸ê®Æ/Raw data/103-2-SenzaMedi.csv", header=T)  #%~3!<K%;
+##æ‰‹å‹•æŒ‡å®šåŸ·è¡Œæ­¤è¡Œ
+data=read.csv("C://Users/Greg/OneDrive/â˜…è«–æ–‡è³‡æ–™/Raw data/BioPsychoSocial.csv", header=T) 
+data=read.csv("C://Users/Grego/OneDrive/â˜…è«–æ–‡è³‡æ–™/Raw data/CorrelationTest.csv", header=T) 
+data=read.csv("E://OneDrive/â˜…è«–æ–‡è³‡æ–™/Raw data/BioPsychoSocial.csv", header=T) 
+data1=read.csv("C://Users/Grego/OneDrive/â˜…è«–æ–‡è³‡æ–™/Raw data/103-2-SenzaMedi.csv", header=T)  #%~3!<K%;
 
 
 
@@ -37,32 +37,32 @@ data = dataTemp[complete.cases(dataTemp),]
 data=dataDiversity[,c(2,1,3,4,5,14:ncol(dataDiversity))]
 
 
-##¼g¤Jµ²ªG¡ANot Yet Finished¡AÁÙ¤£¯à¤¬°Ê¦¡ªº¿ï¾Ü¼g¤J¦aÂI©MÀÉ®×¦WºÙ
+##å¯«å…¥çµæœï¼ŒNot Yet Finishedï¼Œé‚„ä¸èƒ½äº’å‹•å¼çš„é¸æ“‡å¯«å…¥åœ°é»å’Œæª”æ¡ˆåç¨±
 write.csv("Cor-CESD-Nomed.csv", x=result, row.names = T)
 
-##³]©w­n¶]ªºÄæ¦ì½d³ò
-#¹w´úÅÜ¶µ
+##è¨­å®šè¦è·‘çš„æ¬„ä½ç¯„åœ
+#é æ¸¬è®Šé …
 xStart=2
 xEnd=ncol(data)
-#²Õ§OÅÜ¶µ©Ò¦bÄæ¦ì
+#çµ„åˆ¥è®Šé …æ‰€åœ¨æ¬„ä½
 groupCol=1
-#²Õ§OªºCODING,¤å¦r¶·¥[¤W¤Ş¸¹""
+#çµ„åˆ¥çš„CODING,æ–‡å­—é ˆåŠ ä¸Šå¼•è™Ÿ""
 groupA=0
 groupB=1
-#µ²ªG­nÅã¥Üªº²Õ§O¦WºÙ
+#çµæœè¦é¡¯ç¤ºçš„çµ„åˆ¥åç¨±
 nameGroupA="Low CESD"
 nameGroupB="High CESD"
 
 
 
-#######################¥H¤U³¡¤À¨Ï¥ÎªÌ¤£¶·§ó°Ê#######################################
+#######################ä»¥ä¸‹éƒ¨åˆ†ä½¿ç”¨è€…ä¸é ˆæ›´å‹•#######################################
 if(require("RevoUtilsMath")){ setMKLthreads(2) } 
 
 
 nVar=xEnd-xStart+1
 
 
-#µ²ªG¥[¤W¬P¸¹¨ç¼Æ
+#çµæœåŠ ä¸Šæ˜Ÿè™Ÿå‡½æ•¸
 addStar <- function(betaValue,pvalue)
 {
   if (pvalue<0.001) {betaStar=paste0(betaValue,"***")}
