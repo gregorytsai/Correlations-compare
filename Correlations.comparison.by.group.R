@@ -56,9 +56,6 @@ nameGroupB="High CESD"
 
 
 #######################以下部分使用者不須更動#######################################
-if(require("RevoUtilsMath")){ setMKLthreads(2) } 
-
-
 nVar=xEnd-xStart+1
 
 
