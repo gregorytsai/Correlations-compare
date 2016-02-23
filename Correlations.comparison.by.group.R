@@ -23,10 +23,8 @@ library("cocor")
 ##自動選擇執行此行
 data=read.csv(file.choose(), header=T) 
 ##手動指定執行此行
-data=read.csv("C://Users/Greg/OneDrive/★論文資料/Raw data/BioPsychoSocial.csv", header=T) 
-data=read.csv("C://Users/Grego/OneDrive/★論文資料/Raw data/CorrelationTest.csv", header=T) 
-data=read.csv("E://OneDrive/★論文資料/Raw data/BioPsychoSocial.csv", header=T) 
-data1=read.csv("C://Users/Grego/OneDrive/★論文資料/Raw data/103-2-SenzaMedi.csv", header=T)  #%~3!<K%;
+data=read.csv("BioPsychoSocial.csv", header=T) 
+
 
 
 
